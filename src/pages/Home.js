@@ -11,8 +11,8 @@ export class Home extends Component {
     this.state = { allData: [], show: false, id: 0 };
   }
   componentDidMount = async () => {
-    const server = process.env.REACT_APP_SERVER;
-    // const server = "https://propject.herokuapp.com";
+    // const server = process.env.REACT_APP_SERVER;
+    const server = "https://propject.herokuapp.com";
 
     const data = await axios.get(`${server}/all`);
     this.setState({
@@ -25,8 +25,8 @@ export class Home extends Component {
       name: e.target.name.value,
       age: e.target.age.value,
     };
-    const server = process.env.REACT_APP_SERVER;
-    // const server = "https://propject.herokuapp.com";
+    // const server = process.env.REACT_APP_SERVER;
+    const server = "https://propject.herokuapp.com";
 
     const data = await axios.post(`${server}/post`, obj);
     this.setState({
@@ -34,8 +34,8 @@ export class Home extends Component {
     });
   };
   delete = async (id) => {
-    const server = process.env.REACT_APP_SERVER;
-    // const server = "https://propject.herokuapp.com";
+    // const server = process.env.REACT_APP_SERVER;
+    const server = "https://propject.herokuapp.com";
 
     const data = await axios.delete(`${server}/delete?id=${id}`);
     this.setState({
@@ -62,7 +62,9 @@ export class Home extends Component {
       id: this.state.id,
     };
     console.log(obj);
-    const server = process.env.REACT_APP_SERVER;
+    // const server = process.env.REACT_APP_SERVER;
+    const server = "https://propject.herokuapp.com";
+
     const data = await axios.put(`${server}/update`, obj);
     this.setState({
       allData: data.data,
