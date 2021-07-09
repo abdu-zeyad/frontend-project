@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Favorite from "./pages/Favorite";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Car from "./pages/Car";
 export class App extends Component {
   render() {
     return (
@@ -16,6 +17,9 @@ export class App extends Component {
             </Route>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/car">
+              <Car />
             </Route>
           </Switch>
           <Footer />

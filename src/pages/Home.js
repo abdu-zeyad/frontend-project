@@ -3,6 +3,7 @@ import { Form, Button, Card, Row, Col, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export class Home extends Component {
   constructor(props) {
@@ -78,11 +79,14 @@ export class Home extends Component {
               return (
                 <Col>
                   <Card style={{ width: "10 %", maxHeight: "300px" }}>
-                    <Card.Img
-                      variant="top"
-                      src={items.age}
-                      style={{ height: "150px" }}
-                    />
+                    <Link to="car">
+                      <Card.Img
+                        variant="top"
+                        src={items.age}
+                        style={{ height: "150px" }}
+                      />
+                    </Link>
+
                     <Card.Body>
                       <Card.Title style={{ height: "50px" }}>
                         {items.name}
