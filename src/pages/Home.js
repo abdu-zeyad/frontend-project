@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import axios from "axios";
@@ -10,8 +10,8 @@ export class Home extends Component {
     this.state = { allData: [] };
   }
   componentDidMount = async () => {
-    // const server = process.env.REACT_APP_SERVER;
-    const server = "https://propject.herokuapp.com";
+    const server = process.env.REACT_APP_SERVER;
+    // const server = "https://propject.herokuapp.com";
 
     const data = await axios.get(`${server}/all`);
     this.setState({
@@ -24,8 +24,8 @@ export class Home extends Component {
       name: e.target.name.value,
       age: e.target.age.value,
     };
-    // const server = process.env.REACT_APP_SERVER;
-    const server = "https://propject.herokuapp.com";
+    const server = process.env.REACT_APP_SERVER;
+    // const server = "https://propject.herokuapp.com";
 
     const data = await axios.post(`${server}/post`, obj);
     this.setState({
@@ -36,8 +36,8 @@ export class Home extends Component {
   delete = async (id) => {
     console.log(id);
 
-    // const server = process.env.REACT_APP_SERVER;
-    const server = "https://propject.herokuapp.com";
+    const server = process.env.REACT_APP_SERVER;
+    // const server = "https://propject.herokuapp.com";
 
     const data = await axios.delete(`${server}/delete?id=${id}`);
     this.setState({
@@ -48,29 +48,33 @@ export class Home extends Component {
     return (
       <div className="containerHome">
         <div className="renderitems">
-          {this.state.allData.map((items) => {
-            return (
-              <Card style={{ width: "18rem" }}>
-                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                <Card.Body>
-                  <Card.Title>{items.name}</Card.Title>
-                  <Card.Text>{items.age}</Card.Text>
-                  <Button
-                    variant="primary"
-                    onClick={() => this.delete(items._id)}
-                  >
-                    delete
-                  </Button>
-                  {/* <Button
+          <Row xs={1} md={3} className="g-4">
+            {this.state.allData.map((items) => {
+              return (
+                <Col>
+                  <Card style={{ width: "18rem" }}>
+                    {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+                    <Card.Body>
+                      <Card.Title>{items.name}</Card.Title>
+                      <Card.Text>{items.age}</Card.Text>
+                      <Button
+                        variant="primary"
+                        onClick={() => this.delete(items._id)}
+                      >
+                        delete
+                      </Button>
+                      {/* <Button
                     variant="primary"
                     onClick={() => this.update(items._id)}
                   >
                     update
                   </Button> */}
-                </Card.Body>
-              </Card>
-            );
-          })}
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
         </div>
         <div className="form">
           <Form onSubmit={this.postData}>
