@@ -45,7 +45,7 @@ export class Home extends Component {
           {this.state.allData.map((items) => {
             return (
               <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
                   <Card.Title>{items.name}</Card.Title>
                   <Card.Text>{items.age}</Card.Text>
@@ -54,6 +54,12 @@ export class Home extends Component {
                     onClick={() => this.delete(items._id)}
                   >
                     delete
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => this.update(items._id)}
+                  >
+                    update
                   </Button>
                 </Card.Body>
               </Card>
