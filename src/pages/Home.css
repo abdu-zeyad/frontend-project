@@ -1,0 +1,12 @@
+.containerHome {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-areas: "renderitems form ";
+}
+.renderitems {
+  grid-area: renderitems;
+}
+.form {
+  grid-area: form;
+}
