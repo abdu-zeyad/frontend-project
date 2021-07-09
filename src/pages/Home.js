@@ -7,7 +7,7 @@ import axios from "axios";
 export class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { allData: [], show: false, index: -1 };
+    this.state = { allData: [], show: false, id: 0 };
   }
   componentDidMount = async () => {
     const server = process.env.REACT_APP_SERVER;
@@ -44,15 +44,31 @@ export class Home extends Component {
       allData: data.data,
     });
   };
-  showupdateform = (idx) => {
+  showupdateform = (_id) => {
     this.setState({
       show: true,
-      index: idx,
+      id: _id,
     });
+    console.log(_id);
   };
   handleClose = () => {
     this.setState({
       show: false,
+    });
+  };
+  updatedata = async (e) => {
+    e.preventDefault();
+
+    const obj = {
+      name: e.target.name.value,
+      age: e.target.age.value,
+      id: this.state.id,
+    };
+    console.log(obj);
+    const server = process.env.REACT_APP_SERVER;
+    const data = await axios.put(`${server}/update`, obj);
+    this.setState({
+      allData: data.data,
     });
   };
 
@@ -77,7 +93,7 @@ export class Home extends Component {
                       </Button>
                       <Button
                         variant="primary"
-                        onClick={() => this.showupdateform(idx)}
+                        onClick={() => this.showupdateform(items._id)}
                       >
                         update
                       </Button>
@@ -106,7 +122,7 @@ export class Home extends Component {
           </Form>
         </div>
         <div className="modelhome">
-          <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal show={this.state.show}>
             <Modal.Header closeButton>
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
