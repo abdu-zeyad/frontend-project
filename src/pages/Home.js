@@ -79,7 +79,10 @@ export class Home extends Component {
               return (
                 <Col>
                   <Card style={{ width: "10 %", maxHeight: "300px" }}>
-                    <Link to="car">
+                    <Link
+                      to="car"
+                      onClick={() => this.props.carinfo(items._id)}
+                    >
                       <Card.Img
                         variant="top"
                         src={items.age}
