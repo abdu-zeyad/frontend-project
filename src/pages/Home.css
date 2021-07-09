@@ -1,12 +1,18 @@
 .containerHome {
+  display: flex;
   width: 90%;
   margin: auto;
-  display: grid;
-  grid-template-areas: "renderitems form ";
+  margin-top: 100px;
 }
 .renderitems {
-  grid-area: renderitems;
+  width: 55%;
 }
 .form {
-  grid-area: form;
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  margin-bottom: 40px;
 }

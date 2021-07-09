@@ -31,11 +31,8 @@ export class Home extends Component {
     this.setState({
       allData: data.data,
     });
-    console.log(data.data);
   };
   delete = async (id) => {
-    console.log(id);
-
     const server = process.env.REACT_APP_SERVER;
     // const server = "https://propject.herokuapp.com";
 
@@ -49,7 +46,6 @@ export class Home extends Component {
       show: true,
       id: _id,
     });
-    console.log(_id);
   };
   handleClose = () => {
     this.setState({
@@ -69,6 +65,7 @@ export class Home extends Component {
     const data = await axios.put(`${server}/update`, obj);
     this.setState({
       allData: data.data,
+      show: false,
     });
   };
 
@@ -80,11 +77,17 @@ export class Home extends Component {
             {this.state.allData.map((items, idx) => {
               return (
                 <Col>
-                  <Card style={{ width: "18rem" }}>
-                    {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+                  <Card style={{ width: "10 %", maxHeight: "300px" }}>
+                    <Card.Img
+                      variant="top"
+                      src={items.age}
+                      style={{ height: "150px" }}
+                    />
                     <Card.Body>
-                      <Card.Title>{items.name}</Card.Title>
-                      <Card.Text>{items.age}</Card.Text>
+                      <Card.Title style={{ height: "50px" }}>
+                        {items.name}
+                      </Card.Title>
+                      <Card.Text></Card.Text>
                       <Button
                         variant="primary"
                         onClick={() => this.delete(items._id)}
@@ -112,7 +115,7 @@ export class Home extends Component {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Label>age</Form.Label>
+              <Form.Label>Image Link</Form.Label>
               <Form.Control type="text" name="age" />
             </Form.Group>
 
