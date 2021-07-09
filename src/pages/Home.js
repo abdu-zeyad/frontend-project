@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { Form, Button, Card, Row, Col, Modal } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
 import axios from "axios";
@@ -7,7 +7,7 @@ import axios from "axios";
 export class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { allData: [] };
+    this.state = { allData: [], show: false, index: -1 };
   }
   componentDidMount = async () => {
     const server = process.env.REACT_APP_SERVER;
@@ -44,12 +44,24 @@ export class Home extends Component {
       allData: data.data,
     });
   };
+  showupdateform = (idx) => {
+    this.setState({
+      show: true,
+      index: idx,
+    });
+  };
+  handleClose = () => {
+    this.setState({
+      show: false,
+    });
+  };
+
   render() {
     return (
       <div className="containerHome">
         <div className="renderitems">
           <Row xs={1} md={3} className="g-4">
-            {this.state.allData.map((items) => {
+            {this.state.allData.map((items, idx) => {
               return (
                 <Col>
                   <Card style={{ width: "18rem" }}>
@@ -63,12 +75,12 @@ export class Home extends Component {
                       >
                         delete
                       </Button>
-                      {/* <Button
-                    variant="primary"
-                    onClick={() => this.update(items._id)}
-                  >
-                    update
-                  </Button> */}
+                      <Button
+                        variant="primary"
+                        onClick={() => this.showupdateform(idx)}
+                      >
+                        update
+                      </Button>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -92,6 +104,35 @@ export class Home extends Component {
               Submit
             </Button>
           </Form>
+        </div>
+        <div className="modelhome">
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form onSubmit={this.updatedata}>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>name</Form.Label>
+                  <Form.Control type="text" name="name" />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>age</Form.Label>
+                  <Form.Control type="text" name="age" />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     );
