@@ -55,12 +55,12 @@ export class Home extends Component {
                   >
                     delete
                   </Button>
-                  <Button
+                  {/* <Button
                     variant="primary"
                     onClick={() => this.update(items._id)}
                   >
                     update
-                  </Button>
+                  </Button> */}
                 </Card.Body>
               </Card>
             );
