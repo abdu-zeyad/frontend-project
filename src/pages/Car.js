@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import "./Car.css";
 import { Card, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 export class Car extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <div className="containercar">
@@ -24,25 +26,32 @@ export class Car extends Component {
             );
           })}
         </div>
-        <div className="reviews">
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Add a Review</Form.Label>
-              <Form.Control type="text" placeholder="your name" />
-              <Form.Text className="text-muted">
-                What do you think about this car
-              </Form.Text>
-            </Form.Group>
+        <div className="rightside">
+          <div className="reviews">
+            <Form onSubmit={this.renderReview}>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Add a Review</Form.Label>
+                <Form.Control type="text" placeholder="your name" name="name" />
+                <Form.Text className="text-muted">
+                  What do you think about this car
+                </Form.Text>
+              </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Write a Review</Form.Label>
-              <Form.Control type="text" />
-            </Form.Group>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Write a Review</Form.Label>
+                <Form.Control
+                  type="text"
+                  className="revieboxcar"
+                  name="review"
+                />
+              </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
+          </div>
+          <div className="renderReviews">renderreview</div>
         </div>
       </div>
     );

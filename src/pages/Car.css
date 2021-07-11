@@ -2,9 +2,13 @@
   display: flex;
 
   min-height: 700px;
-  width: 80%;
-  margin: 100px 5% 0px 4%;
+  width: 90%;
+  margin: 100px 5% 0px 5%;
 }
 .reviews {
   padding-left: 5%;
+  width: 120%;
+}
+.revieboxcar {
+  height: 100px;
 }
