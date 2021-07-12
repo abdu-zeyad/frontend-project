@@ -12,3 +12,15 @@
 .revieboxcar {
   height: 100px;
 }
+.cardrevies {
+  height: inherit;
+  margin-bottom: 0px;
+  font-size: 0.8rem;
+}
+.cardTilte {
+  font-size: 1rem;
+}
+.renderReviews {
+  margin-top: 40px;
+  margin-left: 5%;
+}
